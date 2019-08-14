@@ -34,9 +34,14 @@ class SnippetSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+
+    # get snippets by using primary key of user
+    # snippets has a reverse relationship to user
+
     snippets = serializers.PrimaryKeyRelatedField(
         many=True, queryset=Snippet.objects.all())
 
     class Meta:
         model = User
         fields = ['id', 'username', 'snippets']
+        # get id username snippets from user model
